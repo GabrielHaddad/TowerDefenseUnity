@@ -8,7 +8,6 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] List<Texture2D> cursorIcons = new List<Texture2D>();
     [SerializeField] List<GameObject> placebleTowers = new List<GameObject>();
     [SerializeField] Texture2D defaultCursorIcon;
-    [SerializeField] Transform placebleCanvas;
     bool canPlaceTower = false;
     int indexCurrentTower;
     Vector2 mousePosition;
@@ -47,7 +46,7 @@ public class TowerSpawner : MonoBehaviour
     void PlaceTower()
     {
         Instantiate(placebleTowers[indexCurrentTower], 
-                        mousePosition, Quaternion.identity, placebleCanvas);
+                        mousePosition, Quaternion.identity);
     }
 
     public void ChangeCursor(Texture2D cursor)
