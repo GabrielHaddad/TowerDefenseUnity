@@ -1,0 +1,52 @@
+{
+    "name": "TowerInput",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "a138bac1-b8b8-472f-89a5-763f78ce32f0",
+            "actions": [
+                {
+                    "name": "Mouse Click",
+                    "type": "Button",
+                    "id": "a2b88204-3ecb-4775-a80c-dc41cc825b58",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "49912e42-fb75-4e29-b1b0-676424aa5d53",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e5b2e749-f914-4a28-bfec-2cd787dcef61",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98f6d219-955f-4155-8c5e-4dcd05ae2b5b",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

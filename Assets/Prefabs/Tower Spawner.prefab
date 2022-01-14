@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4341103017620441687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4341103017620441685}
+  - component: {fileID: 4341103017620441684}
+  m_Layer: 0
+  m_Name: Tower Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4341103017620441685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341103017620441687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4341103017620441684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341103017620441687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d7652ad4439914f9197175d1fef7c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorIcons:
+  - {fileID: 2800000, guid: b466a363c34e9fd49b8f75ca1bcb07a6, type: 3}
+  - {fileID: 2800000, guid: f95e4302b93685e489eef090d2943742, type: 3}
+  placebleTowers:
+  - {fileID: 1956700477033473430, guid: c9068fe433960df4f8f46586b6d713aa, type: 3}
+  - {fileID: 1956700477033473430, guid: 3125fd9e19f4f3147ba769cc7b9c7aac, type: 3}
+  defaultCursorIcon: {fileID: 2800000, guid: 3417dde2c46184e4cbf95e96d5dc2640, type: 3}
+  placebleCanvas: {fileID: 0}
