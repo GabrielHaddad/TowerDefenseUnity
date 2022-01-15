@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 344703881351627549}
   - component: {fileID: 344703881351627546}
   - component: {fileID: 344703881351627548}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunPoint: {fileID: 344703882968949870}
-  findEnemiesRadius: 5
+  findEnemiesRadius: 3
+  enemyFilter:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!61 &344703881351627548
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 344703882758844188}
   - component: {fileID: 344703882758844191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 344703882968949870}
   - component: {fileID: 344703882968949873}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

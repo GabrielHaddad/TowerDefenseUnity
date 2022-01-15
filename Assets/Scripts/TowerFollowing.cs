@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,7 +9,9 @@ public class TowerFollowing : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] Transform gunPoint;
     [SerializeField] float findEnemiesRadius = 5f;
-    Transform enemyPosition;
+    [SerializeField] LayerMask enemyFilter;
+    Collider2D[] enemies;
+    Transform currentEnemyTarget;
 
 
     // Start is called before the first frame update
@@ -17,28 +20,49 @@ public class TowerFollowing : MonoBehaviour, IPointerClickHandler
 
     }
 
-    void Update() 
-    {
-        LookForEnemies();
-    }
-
     void LookForEnemies()
     {
-        Collider2D enemy = Physics2D.OverlapCircle(transform.position, findEnemiesRadius);
-        
-        if (enemy != null && enemy.tag == "Enemy")
+        enemies = Physics2D.OverlapCircleAll(transform.position, findEnemiesRadius, enemyFilter);
+
+        if (!IsColliderArrayEmpty(enemies))
         {
-            enemyPosition = enemy.gameObject.transform;
+            ChangeCurrentTarget();
         }
         else
         {
-            enemyPosition = null;
+            currentEnemyTarget = null;
         }
     }
 
-    void FixedUpdate() 
+    void ChangeCurrentTarget()
     {
-        if (enemyPosition != null)
+        Collider2D found = Array.Find(enemies, element => element.gameObject.transform == currentEnemyTarget);
+
+        if (found != null)
+        {
+            currentEnemyTarget = found.transform;
+        }
+        else
+        {
+            currentEnemyTarget = enemies.First().transform;
+        }
+    }
+
+    bool IsColliderArrayEmpty(Collider2D[] array)
+    {
+        if (array == null)
+        {
+            return true;
+        }
+
+        return array.Length == 0;
+    }
+
+    void FixedUpdate()
+    {
+        LookForEnemies();
+
+        if (currentEnemyTarget != null)
         {
             FollowEnemy();
         }
@@ -46,7 +70,7 @@ public class TowerFollowing : MonoBehaviour, IPointerClickHandler
 
     void FollowEnemy()
     {
-        Vector3 difference = enemyPosition.position - gunPoint.position;
+        Vector3 difference = currentEnemyTarget.position - gunPoint.position;
         difference.Normalize();
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
         gunPoint.rotation = Quaternion.Euler(0f, 0f, rotationZ);
@@ -64,7 +88,7 @@ public class TowerFollowing : MonoBehaviour, IPointerClickHandler
 
     void OnDrawGizmosSelected()
     {
-        // Gizmos.color = Color.yellow;
-        // Gizmos.DrawSphere(transform.position, findEnemiesRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, findEnemiesRadius);
     }
 }
