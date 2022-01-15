@@ -12,9 +12,13 @@ public class TowerFollowing : MonoBehaviour, IPointerClickHandler
     [SerializeField] LayerMask enemyFilter;
     Collider2D[] enemies;
     Transform currentEnemyTarget;
+    Shooter shooter;
 
+    void Awake()
+    {
+        shooter = GetComponent<Shooter>();
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -65,6 +69,11 @@ public class TowerFollowing : MonoBehaviour, IPointerClickHandler
         if (currentEnemyTarget != null)
         {
             FollowEnemy();
+            shooter.StartFiring();
+        }
+        else
+        {
+            shooter.StopFiring();
         }
     }
 
