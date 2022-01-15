@@ -54,12 +54,12 @@ public class TowerFollowing : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
-        {
-            Debug.Log("UIIIIIIIIII");
-        }
+        // if (!EventSystem.current.IsPointerOverGameObject())
+        // {
+        //     Debug.Log("UIIIIIIIIII");
+        // }
 
-        Debug.Log("clicked pointer");
+        // Debug.Log("clicked pointer");
     }
 
     void OnDrawGizmosSelected()

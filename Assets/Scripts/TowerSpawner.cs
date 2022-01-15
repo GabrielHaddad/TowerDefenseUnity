@@ -33,11 +33,11 @@ public class TowerSpawner : MonoBehaviour
 
     void MouseClick()
     {
-        if (canPlaceTower)
-        {
-            mousePosition = towerInput.Mouse.MousePosition.ReadValue<Vector2>();
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mousePosition = towerInput.Mouse.MousePosition.ReadValue<Vector2>();
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
+        if (canPlaceTower && !checkIfPositionIsOccupied(mousePosition))
+        {
             PlaceTower();
             DisableTowerPlacing();
         }
@@ -68,6 +68,19 @@ public class TowerSpawner : MonoBehaviour
         ChangeCursor(defaultCursorIcon);
     }
 
+    bool checkIfPositionIsOccupied(Vector2 mousePosition)
+    {
+         //check if there is something at that position
+         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.up, 0.5f);
+
+         if (hit.collider != null)
+         {
+             return true;
+         }
+
+         return false;
+    }
+
     void OnEnable()
     {
         towerInput.Enable();
@@ -77,4 +90,5 @@ public class TowerSpawner : MonoBehaviour
     {
         towerInput.Disable();
     }
+    
 }
