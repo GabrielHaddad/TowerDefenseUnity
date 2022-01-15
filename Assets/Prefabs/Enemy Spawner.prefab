@@ -47,3 +47,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4ff04ee7ffe6f448afdeba89333ecf2, type: 2}
   timeBetweenWaves: 2
   isLooping: 1
+  pathCollider: {fileID: 0}

@@ -47,7 +47,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: b466a363c34e9fd49b8f75ca1bcb07a6, type: 3}
   - {fileID: 2800000, guid: f95e4302b93685e489eef090d2943742, type: 3}
   placebleTowers:
-  - {fileID: 1956700477033473430, guid: c9068fe433960df4f8f46586b6d713aa, type: 3}
-  - {fileID: 1956700477033473430, guid: 3125fd9e19f4f3147ba769cc7b9c7aac, type: 3}
+  - {fileID: 344703881351627544, guid: 15a256e6928075446bec05fe14ceb8ca, type: 3}
   defaultCursorIcon: {fileID: 2800000, guid: 3417dde2c46184e4cbf95e96d5dc2640, type: 3}
-  placebleCanvas: {fileID: 0}
+  cleanCursorIcon: {fileID: 2800000, guid: f95e4302b93685e489eef090d2943742, type: 3}
