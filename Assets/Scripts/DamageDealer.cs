@@ -15,4 +15,9 @@ public class DamageDealer : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+    }
 }

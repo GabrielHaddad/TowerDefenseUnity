@@ -2,22 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TowerSpawner : MonoBehaviour
 {
     [SerializeField] List<Texture2D> cursorIcons = new List<Texture2D>();
     [SerializeField] List<GameObject> placebleTowers = new List<GameObject>();
+    [SerializeField] List<Button> upgradeButtons = new List<Button>();
     [SerializeField] Texture2D defaultCursorIcon;
     [SerializeField] Texture2D cleanCursorIcon;
     bool canPlaceTower = false;
-    bool canCleanTower = true;
+    bool canCleanTower = false;
     int indexCurrentTower;
     Vector2 mousePosition;
     TowerInput towerInput;
+    UIController uIController;
+    UpgradeTowers upgradeTowers;
+    GameObject currentTowerClicked;
 
     void Awake()
     {
         towerInput = new TowerInput();
+        uIController = FindObjectOfType<UIController>();
+        upgradeTowers = GetComponent<UpgradeTowers>();
 
         //Cursor.lockState = CursorLockMode.Confined;
     }
@@ -26,11 +34,6 @@ public class TowerSpawner : MonoBehaviour
     {
         ChangeCursor(defaultCursorIcon);
         towerInput.Mouse.MouseClick.performed += _ => MouseClick();
-    }
-
-    void Update()
-    {
-
     }
 
     void MouseClick()
@@ -50,12 +53,91 @@ public class TowerSpawner : MonoBehaviour
             PlaceTower();
             DisableTowerPlacing();
         }
+
+        if (!canCleanTower && !canPlaceTower)
+        {
+            GameObject tower = GetClickedTower();
+            ChangeUI(tower);
+        }
+    }
+
+    void ModifyUIButtonState()
+    {
+        UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
+
+        upgradeButtons[0].interactable = config.CheckIfCanUpgradeSpeed();
+        upgradeButtons[1].interactable = config.CheckIfCanUpgradeDamage();
+        upgradeButtons[2].interactable = config.CheckIfCanUpgradeRange();
+    }
+
+    GameObject GetClickedTower()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.up, 0.5f);
+
+        if (hit.collider != null && hit.collider.tag == "Tower")
+        {
+            return hit.collider.gameObject;
+        }
+
+        return null;
+    }
+
+    void ChangeUI(GameObject tower)
+    {
+        if (tower != null)
+        {
+            uIController.EnableUpgrading();
+            currentTowerClicked = tower;
+            ModifyUIButtonState();
+            return;
+        }
+        else if (CheckIfClickedUI())
+        {
+            return;
+        }
+
+        uIController.EnableBuying();
+        currentTowerClicked = null;
+    }
+
+    bool CheckIfClickedUI()
+    {
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void UpgradeTowerSpeed()
+    {
+        UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
+        upgradeTowers.UpgradeSpeed(currentTowerClicked);
+        ModifyUIButtonState();     
+    }
+
+    public void UpgradeTowerRange()
+    {
+        UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
+        upgradeTowers.UpgradeRange(currentTowerClicked);
+        ModifyUIButtonState();
+    }
+
+    public void UpgradeTowerDamage()
+    {
+        UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
+        upgradeTowers.UpgradeDamage(currentTowerClicked);
+        ModifyUIButtonState();
     }
 
     void PlaceTower()
     {
-        Instantiate(placebleTowers[indexCurrentTower],
+        GameObject instance = Instantiate(placebleTowers[indexCurrentTower],
                         mousePosition, Quaternion.identity);
+
+        currentTowerClicked = instance;
     }
 
     public void ChangeCursor(Texture2D cursor)
@@ -99,12 +181,11 @@ public class TowerSpawner : MonoBehaviour
 
     void CheckAndDestroyTower(Vector2 mousePosition)
     {
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.up, 0.5f);
+        GameObject tower = GetClickedTower();
 
-        if (hit.collider != null && hit.collider.tag == "Tower")
+        if (tower != null)
         {
-            GameObject clickedTower = hit.collider.gameObject;
-            Destroy(clickedTower);
+            Destroy(tower);
         }
     }
 

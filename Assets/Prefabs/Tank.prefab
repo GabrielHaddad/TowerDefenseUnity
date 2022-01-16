@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 344703881351627546}
   - component: {fileID: 344703881351627548}
   - component: {fileID: 1366883705695170175}
+  - component: {fileID: 8536932522786382649}
   m_Layer: 7
   m_Name: Tank
   m_TagString: Tower
@@ -92,8 +93,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6458548162773887684, guid: 49888a16e12e4034eba551fb8dea007f, type: 3}
   projectileSpeed: 20
-  projectileLifetime: 5
+  projectileLifetime: 2
   baseFiringRate: 0.2
+--- !u!114 &8536932522786382649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344703881351627544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960ebc7c175993e4ca17e0fa7e395ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &344703882758844189
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,11 +19,6 @@ public class TowerFollowing : MonoBehaviour, IPointerClickHandler
         shooter = GetComponent<Shooter>();
     }
 
-    void Start()
-    {
-
-    }
-
     void LookForEnemies()
     {
         enemies = Physics2D.OverlapCircleAll(transform.position, findEnemiesRadius, enemyFilter);
@@ -83,6 +78,11 @@ public class TowerFollowing : MonoBehaviour, IPointerClickHandler
         difference.Normalize();
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
         gunPoint.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+    }
+
+    public void IncreaseTowerRange(float rangeToAdd)
+    {
+        findEnemiesRadius += rangeToAdd;
     }
 
     public void OnPointerClick(PointerEventData eventData)

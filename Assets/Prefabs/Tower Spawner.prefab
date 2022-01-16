@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4341103017620441685}
   - component: {fileID: 4341103017620441684}
+  - component: {fileID: 551962996}
   m_Layer: 0
   m_Name: Tower Spawner
   m_TagString: Untagged
@@ -48,5 +49,18 @@ MonoBehaviour:
   - {fileID: 2800000, guid: f95e4302b93685e489eef090d2943742, type: 3}
   placebleTowers:
   - {fileID: 344703881351627544, guid: 15a256e6928075446bec05fe14ceb8ca, type: 3}
+  upgradeButtons: []
   defaultCursorIcon: {fileID: 2800000, guid: 3417dde2c46184e4cbf95e96d5dc2640, type: 3}
   cleanCursorIcon: {fileID: 2800000, guid: f95e4302b93685e489eef090d2943742, type: 3}
+--- !u!114 &551962996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341103017620441687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de6d734a73b15747bdae1cf362699c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
