@@ -6,6 +6,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] int health = 50;
     [SerializeField] ParticleSystem hitEffect;
+    [SerializeField] ParticleSystem destroyEffect;
     CameraShake cameraShake;
     //AudioPlayer audioPlayer;
 
@@ -27,6 +28,7 @@ public class Health : MonoBehaviour
 
     void Die()
     {
+        PlayParticleEffect(destroyEffect);
         Destroy(gameObject);
     }
 
@@ -42,7 +44,7 @@ public class Health : MonoBehaviour
         if (damageDealer != null)
         {
             TakeDamage(damageDealer.GetDamage());
-            // PlayHitEffect();
+            PlayParticleEffect(hitEffect);
             // audioPlayer.PlayDamageClip();
             ShakeCamera();
             damageDealer.Hit();
@@ -57,11 +59,11 @@ public class Health : MonoBehaviour
         }
     }
 
-    void PlayHitEffect()
+    void PlayParticleEffect(ParticleSystem particle)
     {
         if (hitEffect != null)
         {
-            ParticleSystem instance = Instantiate(hitEffect, transform.position, Quaternion.identity);
+            ParticleSystem instance = Instantiate(particle, transform.position, Quaternion.identity);
             Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax);
         }
     }

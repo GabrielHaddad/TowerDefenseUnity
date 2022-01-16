@@ -106,8 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7523e99a3a871f147a6d88dbd6b914ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  hitEffect: {fileID: 0}
+  health: 30
+  hitEffect: {fileID: 2662595665214848369, guid: 2ca37ece90ee74d4d8b2d08a7c282c75, type: 3}
+  destroyEffect: {fileID: 2662595665214848369, guid: 71b9eccdc61276e4e8c8db184b16a180, type: 3}
 --- !u!1 &344703882758844189
 GameObject:
   m_ObjectHideFlags: 0
