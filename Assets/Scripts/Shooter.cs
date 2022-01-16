@@ -12,11 +12,11 @@ public class Shooter : MonoBehaviour
     Transform gunPoint;
     bool isFiring = false;
     Coroutine firingCoroutine;
-    // AudioPlayer audioPlayer;
+    AudioPlayer audioPlayer;
 
     void Awake() 
     {
-        // audioPlayer = FindObjectOfType<AudioPlayer>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     void Start()
@@ -68,7 +68,7 @@ public class Shooter : MonoBehaviour
 
             Destroy(instance, projectileLifetime);
 
-            // audioPlayer.PlayShootingClip();
+            audioPlayer.PlayShootingClip();
             
             yield return new WaitForSeconds(baseFiringRate);
         }

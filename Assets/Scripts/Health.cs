@@ -8,12 +8,12 @@ public class Health : MonoBehaviour
     [SerializeField] ParticleSystem hitEffect;
     [SerializeField] ParticleSystem destroyEffect;
     CameraShake cameraShake;
-    //AudioPlayer audioPlayer;
+    AudioPlayer audioPlayer;
 
     void Awake() 
     {
         cameraShake = FindObjectOfType<CameraShake>();
-        // audioPlayer = FindObjectOfType<AudioPlayer>();
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     public void TakeDamage(int damage)
@@ -29,6 +29,7 @@ public class Health : MonoBehaviour
     void Die()
     {
         PlayParticleEffect(destroyEffect);
+        audioPlayer.PlayDestroyClip();
         Destroy(gameObject);
     }
 
@@ -45,7 +46,6 @@ public class Health : MonoBehaviour
         {
             TakeDamage(damageDealer.GetDamage());
             PlayParticleEffect(hitEffect);
-            // audioPlayer.PlayDamageClip();
             ShakeCamera();
             damageDealer.Hit();
         }
