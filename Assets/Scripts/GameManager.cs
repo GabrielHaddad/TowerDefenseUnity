@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] int levelHealth = 100;
     [SerializeField] TextMeshProUGUI lifeText;
     [SerializeField] TextMeshProUGUI waveText;
+    [SerializeField] TextMeshProUGUI moneyText;
     EnemySpawner enemySpawner;
+    int money = 0;
 
     void Awake() 
     {   
@@ -18,12 +20,14 @@ public class GameManager : MonoBehaviour
     void Start() 
     {
         lifeText.text = "Life: " + levelHealth.ToString();
+        moneyText.text = "Money: " + money;
         waveText.text = "Wave: " + enemySpawner.GetCurrentWaveCount() +
                                      "/" + enemySpawner.GetTotalWavesCount();
     }
 
     void Update() 
     {
+        moneyText.text = "Money: " + money;
         waveText.text = "Wave: " + enemySpawner.GetCurrentWaveCount() +
                                      "/" + enemySpawner.GetTotalWavesCount();
     }
@@ -42,5 +46,20 @@ public class GameManager : MonoBehaviour
     {
         levelHealth -= damage;
         lifeText.text = "Life: " + levelHealth.ToString();
+    }
+
+    public void IncreaseTotalMoney(int moneyToAdd)
+    {
+        money += moneyToAdd;
+    }
+
+    public int GetTotalMoney()
+    {
+        return money;
+    }
+
+    public void DecreaseTotalMoney(int moneyToSubtract)
+    {
+        money -= moneyToSubtract;
     }
 }

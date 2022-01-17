@@ -5,15 +5,18 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] int health = 50;
+    [SerializeField] int moneyValue = 50;
     [SerializeField] ParticleSystem hitEffect;
     [SerializeField] ParticleSystem destroyEffect;
     CameraShake cameraShake;
     AudioPlayer audioPlayer;
+    GameManager gameManager;
 
     void Awake() 
     {
         cameraShake = FindObjectOfType<CameraShake>();
         audioPlayer = FindObjectOfType<AudioPlayer>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     public void TakeDamage(int damage)
@@ -30,6 +33,7 @@ public class Health : MonoBehaviour
     {
         PlayParticleEffect(destroyEffect);
         audioPlayer.PlayDestroyClip();
+        gameManager.IncreaseTotalMoney(moneyValue);
         Destroy(gameObject);
     }
 

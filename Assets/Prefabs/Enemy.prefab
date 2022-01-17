@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 70
+  moneyValue: 50
   hitEffect: {fileID: 2662595665214848369, guid: 2ca37ece90ee74d4d8b2d08a7c282c75, type: 3}
   destroyEffect: {fileID: 2662595665214848369, guid: 71b9eccdc61276e4e8c8db184b16a180, type: 3}
 --- !u!114 &1517131249631950046
@@ -122,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ab1dd8121bb67458a5b4a92ea244ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchDamage: 1
 --- !u!1 &344703882758844189
 GameObject:
   m_ObjectHideFlags: 0

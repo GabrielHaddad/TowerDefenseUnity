@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UpgradeConfigs : MonoBehaviour
 {
+    [Header("Tower")]
+    [SerializeField] int towerValue = 50;
+
     [Header("Speed")]
     [SerializeField] int maxSpeedUpgrade = 1;
     [SerializeField] float speedToIncrease = 10f;
@@ -47,6 +50,11 @@ public class UpgradeConfigs : MonoBehaviour
         }
         
         return true;
+    }
+
+    public int GetTowerValue()
+    {
+        return towerValue;
     }
 
     public void IncreaseCurrentSpeedUpgrade()

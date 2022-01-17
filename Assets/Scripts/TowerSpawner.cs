@@ -14,17 +14,19 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] Texture2D cleanCursorIcon;
     bool canPlaceTower = false;
     bool canCleanTower = false;
-    int indexCurrentTower;
+    int indexBoughtTower;
     Vector2 mousePosition;
     TowerInput towerInput;
     UIController uIController;
     UpgradeTowers upgradeTowers;
     GameObject currentTowerClicked;
+    GameManager gameManager;
 
     void Awake()
     {
         towerInput = new TowerInput();
         uIController = FindObjectOfType<UIController>();
+        gameManager = FindObjectOfType<GameManager>();
         upgradeTowers = GetComponent<UpgradeTowers>();
 
         //Cursor.lockState = CursorLockMode.Confined;
@@ -114,27 +116,42 @@ public class TowerSpawner : MonoBehaviour
     public void UpgradeTowerSpeed()
     {
         UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
-        upgradeTowers.UpgradeSpeed(currentTowerClicked);
-        ModifyUIButtonState();     
+
+        if (config != null && gameManager.GetTotalMoney() >= 50) 
+        {
+            upgradeTowers.UpgradeSpeed(currentTowerClicked);
+            ModifyUIButtonState();
+            gameManager.DecreaseTotalMoney(50);
+        }
     }
 
     public void UpgradeTowerRange()
     {
         UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
-        upgradeTowers.UpgradeRange(currentTowerClicked);
-        ModifyUIButtonState();
+
+        if (config != null && gameManager.GetTotalMoney() >= 50) 
+        {
+            upgradeTowers.UpgradeRange(currentTowerClicked);
+            ModifyUIButtonState();
+            gameManager.DecreaseTotalMoney(50);
+        }
     }
 
     public void UpgradeTowerDamage()
     {
         UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
-        upgradeTowers.UpgradeDamage(currentTowerClicked);
-        ModifyUIButtonState();
+
+        if (config != null && gameManager.GetTotalMoney() >= 50) 
+        {
+            upgradeTowers.UpgradeDamage(currentTowerClicked);
+            ModifyUIButtonState();
+            gameManager.DecreaseTotalMoney(50);
+        }
     }
 
     void PlaceTower()
     {
-        GameObject instance = Instantiate(placebleTowers[indexCurrentTower],
+        GameObject instance = Instantiate(placebleTowers[indexBoughtTower],
                         mousePosition, Quaternion.identity);
 
         currentTowerClicked = instance;
@@ -148,9 +165,15 @@ public class TowerSpawner : MonoBehaviour
 
     public void BuyTower(int index)
     {
-        ChangeCursor(cursorIcons[index]);
-        indexCurrentTower = index;
-        canPlaceTower = true;
+        UpgradeConfigs config = placebleTowers[indexBoughtTower].GetComponent<UpgradeConfigs>();
+
+        if (config != null && gameManager.GetTotalMoney() >= config.GetTowerValue()) 
+        {
+            gameManager.DecreaseTotalMoney(config.GetTowerValue());
+            ChangeCursor(cursorIcons[index]);
+            indexBoughtTower = index;
+            canPlaceTower = true;
+        }
     }
 
     public void CleanTower()
