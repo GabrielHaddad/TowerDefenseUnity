@@ -194,6 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelHealth: 100
+  lifeText: {fileID: 1773916106}
+  waveText: {fileID: 1101191687}
 --- !u!1 &48559895
 GameObject:
   m_ObjectHideFlags: 0
