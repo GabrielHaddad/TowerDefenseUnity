@@ -8,10 +8,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float timeBetweenWaves = 0f;
     [SerializeField] bool isLooping = false;
     WaveConfigSO currentWave;
+    int currentWaveCount = 1;
     
     public WaveConfigSO GetCurrentWave()
     {
         return currentWave;
+    }
+
+    public int GetCurrentWaveCount()
+    {
+        return currentWaveCount;
+    }
+
+    public int GetTotalWavesCount()
+    {
+        return waveConfigs.Count;
     }
 
     public void EnableWaves()
@@ -41,6 +52,7 @@ public class EnemySpawner : MonoBehaviour
                     yield return new WaitForSeconds(currentWave.GetRandomSpawnTime());
                 }
 
+                currentWaveCount++;
                 yield return new WaitForSeconds(timeBetweenWaves);
             }
         }
