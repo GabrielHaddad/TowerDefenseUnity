@@ -10,16 +10,19 @@ public class UpgradeConfigs : MonoBehaviour
     [Header("Speed")]
     [SerializeField] int maxSpeedUpgrade = 1;
     [SerializeField] float speedToIncrease = 10f;
+    [SerializeField] int speedCost = 50;
     int currentSpeedUpgrade = 0;
 
     [Header("Range")]
     [SerializeField] int maxRangeUpgrade = 1;
     [SerializeField] float rangeToIncrease = 1f;
+    [SerializeField] int rangeCost = 50;
     int currentRangeUpgrade = 0;
 
     [Header("Damage")]
     [SerializeField] int maxDamageUpgrade = 1;
     [SerializeField] int damageToIncrease = 10;
+    [SerializeField] int damageCost = 50;
     int currentDamageUpgrade = 0;
 
     public bool CheckIfCanUpgradeSpeed()
@@ -77,6 +80,11 @@ public class UpgradeConfigs : MonoBehaviour
         return maxDamageUpgrade;
     }
 
+    public int GetSpeedCost()
+    {
+        return speedCost;
+    }
+
 
 
     public void IncreaseCurrentDamageUpgrade()
@@ -97,6 +105,10 @@ public class UpgradeConfigs : MonoBehaviour
     public int GetMaxDamageUpgrade()
     {
         return maxDamageUpgrade;
+    }
+    public int GetDamageCost()
+    {
+        return damageCost;
     }
 
 
@@ -119,5 +131,10 @@ public class UpgradeConfigs : MonoBehaviour
     public int GetMaxRangeUpgrade()
     {
         return maxRangeUpgrade;
+    }
+
+    public int GetRangeCost()
+    {
+        return rangeCost;
     }
 }

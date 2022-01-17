@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class TowerSpawner : MonoBehaviour
 {
     [SerializeField] List<Texture2D> cursorIcons = new List<Texture2D>();
     [SerializeField] List<GameObject> placebleTowers = new List<GameObject>();
+    [SerializeField] List<Button> towerButtons = new List<Button>();
     [SerializeField] List<Button> upgradeButtons = new List<Button>();
     [SerializeField] Texture2D defaultCursorIcon;
     [SerializeField] Texture2D cleanCursorIcon;
@@ -35,7 +37,17 @@ public class TowerSpawner : MonoBehaviour
     void Start()
     {
         ChangeCursor(defaultCursorIcon);
+        StartTowerValues();
         towerInput.Mouse.MouseClick.performed += _ => MouseClick();
+    }
+
+    void StartTowerValues()
+    {
+        for(int i = 0; i < placebleTowers.Count; i++)
+        {
+            UpgradeConfigs config = placebleTowers[i].GetComponent<UpgradeConfigs>();
+            towerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = config.GetTowerValue().ToString();
+        }
     }
 
     void MouseClick()
@@ -70,7 +82,12 @@ public class TowerSpawner : MonoBehaviour
         upgradeButtons[0].interactable = config.CheckIfCanUpgradeSpeed();
         upgradeButtons[1].interactable = config.CheckIfCanUpgradeDamage();
         upgradeButtons[2].interactable = config.CheckIfCanUpgradeRange();
+
+        upgradeButtons[0].GetComponentInChildren<TextMeshProUGUI>().text = "Speed\n" + config.GetSpeedCost();
+        upgradeButtons[1].GetComponentInChildren<TextMeshProUGUI>().text = "Damage\n" + config.GetDamageCost();
+        upgradeButtons[2].GetComponentInChildren<TextMeshProUGUI>().text = "Range\n" + config.GetRangeCost();
     }
+
 
     GameObject GetClickedTower()
     {
@@ -117,11 +134,11 @@ public class TowerSpawner : MonoBehaviour
     {
         UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
 
-        if (config != null && gameManager.GetTotalMoney() >= 50) 
+        if (config != null && gameManager.GetTotalMoney() >= config.GetSpeedCost()) 
         {
             upgradeTowers.UpgradeSpeed(currentTowerClicked);
             ModifyUIButtonState();
-            gameManager.DecreaseTotalMoney(50);
+            gameManager.DecreaseTotalMoney(config.GetSpeedCost());
         }
     }
 
@@ -129,11 +146,11 @@ public class TowerSpawner : MonoBehaviour
     {
         UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
 
-        if (config != null && gameManager.GetTotalMoney() >= 50) 
+        if (config != null && gameManager.GetTotalMoney() >= config.GetRangeCost()) 
         {
             upgradeTowers.UpgradeRange(currentTowerClicked);
             ModifyUIButtonState();
-            gameManager.DecreaseTotalMoney(50);
+            gameManager.DecreaseTotalMoney(config.GetRangeCost());
         }
     }
 
@@ -141,11 +158,11 @@ public class TowerSpawner : MonoBehaviour
     {
         UpgradeConfigs config = currentTowerClicked.GetComponent<UpgradeConfigs>();
 
-        if (config != null && gameManager.GetTotalMoney() >= 50) 
+        if (config != null && gameManager.GetTotalMoney() >= config.GetDamageCost()) 
         {
             upgradeTowers.UpgradeDamage(currentTowerClicked);
             ModifyUIButtonState();
-            gameManager.DecreaseTotalMoney(50);
+            gameManager.DecreaseTotalMoney(config.GetDamageCost());
         }
     }
 
