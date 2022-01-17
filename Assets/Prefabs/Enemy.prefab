@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ab1dd8121bb67458a5b4a92ea244ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchDamage: 1
+  touchDamage: 100
 --- !u!1 &344703882758844189
 GameObject:
   m_ObjectHideFlags: 0

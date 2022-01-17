@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +10,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI lifeText;
     [SerializeField] TextMeshProUGUI waveText;
     [SerializeField] TextMeshProUGUI moneyText;
+    [SerializeField] TextMeshProUGUI gameOverText;
     EnemySpawner enemySpawner;
+    UIController uIController;
     int money = 0;
 
     void Awake() 
     {   
         enemySpawner = FindObjectOfType<EnemySpawner>();
+        uIController = FindObjectOfType<UIController>();
     }
 
     void Start() 
@@ -27,9 +31,30 @@ public class GameManager : MonoBehaviour
 
     void Update() 
     {
+        int mock = enemySpawner.GetTotalWavesCount() + 10;
         moneyText.text = "Money: " + money;
         waveText.text = "Wave: " + enemySpawner.GetCurrentWaveCount() +
-                                     "/" + enemySpawner.GetTotalWavesCount();
+                                     "/" + mock;
+
+        if (levelHealth <= 0)
+        {
+            EndGame("Better Luck Next Time!\n You Lose!");
+        }
+        else if (enemySpawner.GetCurrentWaveCount() >= mock)
+        {
+            EndGame("Congratulations!\n You Won!");
+        }
+    }
+
+    void EndGame(string endText)
+    {
+        gameOverText.text = endText;
+        uIController.EnableGameOver();
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void OnTriggerEnter2D(Collider2D other) 

@@ -7,6 +7,9 @@ public class UIController : MonoBehaviour
 
     [SerializeField] Canvas towersCanvas;
     [SerializeField] Canvas upgradesCanvas;
+    [SerializeField] Canvas gameOverCanvas;
+    [SerializeField] Canvas menuCanvas;
+    [SerializeField] Canvas waveAndLifeCanvas;
 
     public void EnableUpgrading()
     {
@@ -18,6 +21,15 @@ public class UIController : MonoBehaviour
     {
         towersCanvas.gameObject.SetActive(true);
         upgradesCanvas.gameObject.SetActive(false);
+    }
+
+    public void EnableGameOver()
+    {
+        gameOverCanvas.gameObject.SetActive(true);
+        menuCanvas.gameObject.SetActive(false);
+        towersCanvas.gameObject.SetActive(false);
+        upgradesCanvas.gameObject.SetActive(false);
+        waveAndLifeCanvas.gameObject.SetActive(false);
     }
 
 }
