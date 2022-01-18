@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3076201753530363701}
   - component: {fileID: 1517131249631950046}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Enemy 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.003037572, y: 0.034438103}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -60,7 +60,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.84, y: 0.92}
+  m_Size: {x: 1.2380698, y: 1.4334922}
   m_EdgeRadius: 0
 --- !u!50 &941387777
 Rigidbody2D:
@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7523e99a3a871f147a6d88dbd6b914ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 70
-  moneyValue: 50
+  health: 600
+  moneyValue: 200
   hitEffect: {fileID: 2662595665214848369, guid: 2ca37ece90ee74d4d8b2d08a7c282c75, type: 3}
   destroyEffect: {fileID: 2662595665214848369, guid: 71b9eccdc61276e4e8c8db184b16a180, type: 3}
 --- !u!114 &1517131249631950046
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ab1dd8121bb67458a5b4a92ea244ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchDamage: 10
+  touchDamage: 50
 --- !u!1 &344703882758844189
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 2eca25aebbb251a4ba0e5f7218a6b599, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35844e0229d9d504aaac96121af876d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

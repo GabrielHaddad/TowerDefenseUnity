@@ -182,7 +182,7 @@ public class TowerSpawner : MonoBehaviour
 
     public void BuyTower(int index)
     {
-        UpgradeConfigs config = placebleTowers[indexBoughtTower].GetComponent<UpgradeConfigs>();
+        UpgradeConfigs config = placebleTowers[index].GetComponent<UpgradeConfigs>();
 
         if (config != null && gameManager.GetTotalMoney() >= config.GetTowerValue()) 
         {

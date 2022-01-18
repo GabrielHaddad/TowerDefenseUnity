@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI gameOverText;
     EnemySpawner enemySpawner;
     UIController uIController;
-    int money = 50;
+    int money = 1000;
 
     void Awake() 
     {   
@@ -31,16 +31,15 @@ public class GameManager : MonoBehaviour
 
     void Update() 
     {
-        int mock = enemySpawner.GetTotalWavesCount() + 10;
         moneyText.text = "Money: " + money;
         waveText.text = "Wave: " + enemySpawner.GetCurrentWaveCount() +
-                                     "/" + mock;
+                                     "/" + enemySpawner.GetTotalWavesCount();
 
         if (levelHealth <= 0)
         {
             EndGame("Better Luck Next Time!\n You Lose!");
         }
-        else if (enemySpawner.GetCurrentWaveCount() >= mock)
+        else if (enemySpawner.GetCurrentWaveCount() > enemySpawner.GetTotalWavesCount())
         {
             EndGame("Congratulations!\n You Won!");
         }
