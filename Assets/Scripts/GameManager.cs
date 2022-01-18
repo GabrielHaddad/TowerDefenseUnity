@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI gameOverText;
     EnemySpawner enemySpawner;
     UIController uIController;
-    int money = 0;
+    int money = 50;
 
     void Awake() 
     {   
